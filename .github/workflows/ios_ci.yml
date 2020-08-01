@@ -1,15 +1,6 @@
 name: iOS Build
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - '*'
-
-env:
-  CI: true
+on: push
 
 jobs:
   build:
@@ -34,9 +25,9 @@ jobs:
       - name: Build UI
         run: |
           cd ios
-          xcodebuild build -workspace Divoc.xcworkspace  -scheme Divoc.ui.debug -destination platform="iOS Simulator,name=iPhone 11 Pro Max"
+          xcodebuild build -workspace Divoc.xcworkspace -configuration ProductionDebug -scheme Divoc.ui.debug -destination platform="iOS Simulator,name=iPhone 11 Pro Max"
 
       - name: Build Production
         run: |
           cd ios
-          xcodebuild build -workspace Divoc.xcworkspace  -scheme Divoc.production.debug -destination platform="iOS Simulator,name=iPhone 11 Pro Max"
+          xcodebuild build -workspace Divoc.xcworkspace -configuration UiDebug -scheme Divoc.production.debug -destination platform="iOS Simulator,name=iPhone 11 Pro Max"
